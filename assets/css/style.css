@@ -1,0 +1,507 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+  box-sizing: border-box;
+}
+
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+  display: block;
+}
+
+body {
+  line-height: 1;
+}
+
+ol, ul {
+  list-style: none;
+}
+
+blockquote, q {
+  quotes: none;
+}
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: "";
+  content: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+:root {
+  --Very-dark-blue: hsl(220, 13%, 13%);
+  --Dark-grayish-blue: hsl(219, 9%, 45%);
+  --Grayish-blue: hsl(220, 14%, 75%);
+  --Light-grayish-blue: hsl(223, 64%, 98%);
+  --White: hsl(0, 0%, 100%);
+  --Black: rgba(0, 0, 0, 0.75);
+  --Orange: hsl(26, 100%, 55%);
+  --Pale-orange: hsl(25, 100%, 94%);
+}
+
+body,
+html {
+  width: 100%;
+  height: 100%;
+  font-family: "Kumbh Sans", sans-serif;
+}
+
+.container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+.container header {
+  width: 80%;
+  height: 120px;
+  padding: 0 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--Grayish-blue);
+}
+.container header .logo-wrapper {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+.container header nav {
+  flex: 1 1;
+  height: 100%;
+}
+.container header nav .navbar {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: flex-start;
+  padding-left: 50px;
+  align-items: center;
+}
+.container header nav .navbar ul {
+  height: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 50px;
+}
+.container header nav .navbar ul li {
+  cursor: pointer;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-bottom: 3px solid transparent;
+  color: var(--Dark-grayish-blue);
+}
+.container header nav .navbar ul li:hover {
+  border-color: var(--Orange);
+  color: var(--Very-dark-blue);
+}
+.container header nav .navbar ul li span {
+  font-size: 16px;
+}
+.container header .user-actions {
+  width: -moz-fit-content;
+  width: fit-content;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  position: relative;
+}
+.container header .user-actions .basket {
+  width: -moz-fit-content;
+  width: fit-content;
+  height: 100%;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.container header .user-actions .basket .basket-image {
+  width: 25px;
+  height: 25px;
+}
+.container header .user-actions .basket .basket-image:hover ~ .basket-dropdown {
+  display: flex;
+}
+.container header .user-actions .basket .basket-dropdown {
+  background-color: var(--White);
+  width: 250px;
+  height: -moz-fit-content;
+  height: fit-content;
+  display: none;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  position: absolute;
+  top: 80%;
+  right: 0;
+  border-radius: 10px;
+  box-shadow: -7px 26px 50px -10px rgba(0, 0, 0, 0.75);
+}
+.container header .user-actions .basket .basket-dropdown .dropdown-header {
+  width: 100%;
+  padding: 20px;
+  border-bottom: 1px solid var(--Grayish-blue);
+}
+.container header .user-actions .basket .basket-dropdown .dropdown-header h3 {
+  color: var(--Very-dark-blue);
+}
+.container header .user-actions .basket .basket-dropdown .dropdown-main {
+  width: 100%;
+  height: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.container header .user-actions .basket .basket-dropdown .dropdown-main p {
+  font-size: 16px;
+  color: var(--Dark-grayish-blue);
+}
+.container header .user-actions .user-profile {
+  width: 45px;
+  height: 45px;
+  cursor: pointer;
+  border-radius: 50%;
+}
+.container header .user-actions .user-profile:hover {
+  border: 3px solid var(--Orange);
+}
+.container header .user-actions .user-profile img {
+  width: 100%;
+  height: 100%;
+  inset: 0;
+}
+.container main {
+  width: 80%;
+  height: 800px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.container main .banner-section {
+  width: 50%;
+  height: -moz-fit-content;
+  height: fit-content;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 100px 50px;
+}
+.container main .banner-section .image-wrapper {
+  width: 450px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 30px;
+}
+.container main .banner-section .image-wrapper .banner-image {
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+}
+.container main .banner-section .image-wrapper .banner-image img {
+  width: 100%;
+  height: 100%;
+  inset: 0;
+  -o-object-fit: contain;
+     object-fit: contain;
+  border-radius: 10px;
+}
+.container main .banner-section .image-wrapper .other-pictures {
+  width: 100%;
+  height: -moz-fit-content;
+  height: fit-content;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.container main .banner-section .image-wrapper .other-pictures .picture {
+  width: 80px;
+  height: 80px;
+  border-radius: 12px;
+  cursor: pointer;
+}
+.container main .banner-section .image-wrapper .other-pictures .picture.active {
+  border: 2px solid var(--Orange);
+}
+.container main .banner-section .image-wrapper .other-pictures .picture.active.active img {
+  opacity: 0.3;
+}
+.container main .banner-section .image-wrapper .other-pictures .picture:hover {
+  opacity: 0.5;
+}
+.container main .banner-section .image-wrapper .other-pictures .picture img {
+  width: 100%;
+  height: 100%;
+  inset: 0;
+  border-radius: 10px;
+}
+.container main .content-section {
+  width: 50%;
+  height: -moz-fit-content;
+  height: fit-content;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 100px 50px;
+}
+.container main .content-section .product {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  padding-right: 180px;
+  gap: 30px;
+}
+.container main .content-section .product-company {
+  width: 100%;
+}
+.container main .content-section .product-company h3 {
+  font-size: 12px;
+  letter-spacing: 1px;
+  font-weight: bolder;
+  color: var(--Orange);
+}
+.container main .content-section .product-title {
+  width: 100%;
+}
+.container main .content-section .product-title h2 {
+  font-size: 50px;
+  font-weight: bolder;
+}
+.container main .content-section .product-description {
+  width: 100%;
+}
+.container main .content-section .product-description p {
+  font-size: 16px;
+  line-height: 25px;
+}
+.container main .content-section .product-price-wrapper {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 20px;
+}
+.container main .content-section .product-price-wrapper .price span {
+  font-size: 28px;
+  font-weight: bold;
+}
+.container main .content-section .product-price-wrapper .discount {
+  background-color: var(--Pale-orange);
+  padding: 3px 10px;
+}
+.container main .content-section .product-price-wrapper .discount span {
+  font-size: 16px;
+  color: var(--Orange);
+  font-weight: bold;
+}
+.container main .content-section .product-price-wrapper .previous-price {
+  width: 100%;
+}
+.container main .content-section .product-price-wrapper .previous-price p {
+  color: var(--Grayish-blue);
+  font-weight: bold;
+  font-size: 14px;
+}
+.container main .content-section .product-actions {
+  width: 100%;
+  display: flex;
+  gap: 15px;
+}
+.container main .content-section .product-actions .product-quantity {
+  width: 30%;
+  height: 50px;
+  background-color: var(--Light-grayish-blue);
+  border-radius: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.container main .content-section .product-actions .product-quantity .minus {
+  width: 30%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+.container main .content-section .product-actions .product-quantity .quantity-screen {
+  width: 30%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.container main .content-section .product-actions .product-quantity .quantity-screen span {
+  font-weight: bold;
+  font-size: 14px;
+}
+.container main .content-section .product-actions .product-quantity .plus {
+  width: 30%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+.container main .content-section .product-actions .add-to-cart {
+  width: 60%;
+  height: 50px;
+}
+.container main .content-section .product-actions .add-to-cart button {
+  width: 100%;
+  height: 100%;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  border-radius: 10px;
+  background-color: var(--Orange);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+.container main .content-section .product-actions .add-to-cart button p {
+  color: var(--White);
+  font-size: 12px;
+}
+
+.modal-container {
+  z-index: 9;
+  width: 100%;
+  height: 960px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.5647058824);
+  display: none;
+  justify-content: center;
+  align-items: center;
+}
+.modal-container .modal {
+  width: 600px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+.modal-container .modal .close-modal-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+.modal-container .modal .close-modal-wrapper img {
+  width: 20px;
+  height: 20px;
+  inset: 0;
+}
+.modal-container .modal .modal-image {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+.modal-container .modal .modal-image img {
+  width: 100%;
+  height: 100%;
+  inset: 0;
+  border-radius: 10px;
+  -o-object-fit: contain;
+     object-fit: contain;
+}
+.modal-container .modal .modal-image .prev-button {
+  width: 50px;
+  height: 50px;
+  padding: 15px;
+  background-color: var(--White);
+  border-radius: 50%;
+  position: absolute;
+  left: -25px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.modal-container .modal .modal-image .prev-button img {
+  width: 100%;
+  height: 100%;
+}
+.modal-container .modal .modal-image .next-button {
+  width: 50px;
+  height: 50px;
+  padding: 15px;
+  background-color: var(--White);
+  border-radius: 50%;
+  position: absolute;
+  right: -25px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.modal-container .modal .modal-image .next-button img {
+  width: 100%;
+  height: 100%;
+}
+.modal-container .modal .other-modal-pictures {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+.modal-container .modal .other-modal-pictures .picture {
+  width: 20%;
+  cursor: pointer;
+  border-radius: 15px;
+}
+.modal-container .modal .other-modal-pictures .picture.active {
+  border: 3px solid var(--Orange);
+}
+.modal-container .modal .other-modal-pictures .picture.active.active img {
+  background-color: white;
+  color: white;
+  opacity: 0.4;
+}
+.modal-container .modal .other-modal-pictures .picture:hover {
+  opacity: 0.5;
+}
+.modal-container .modal .other-modal-pictures .picture img {
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+}/*# sourceMappingURL=style.css.map */

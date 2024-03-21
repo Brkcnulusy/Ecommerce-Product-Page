@@ -39,6 +39,7 @@ html {
         border-bottom: 1px solid var(--Grayish-blue);
 
         .logo-wrapper {
+            height: 120px;
             display: flex;
             justify-content: flex-start;
             align-items: center;
@@ -72,6 +73,10 @@ html {
                         border-bottom: 3px solid transparent;
                         color: var(--Dark-grayish-blue);
 
+                        &.active {
+                            border-color: var(--Orange);
+                            color: var(--Very-dark-blue);
+                        }
 
                         &:hover {
                             border-color: var(--Orange);
@@ -118,7 +123,7 @@ html {
 
                 .basket-dropdown {
                     background-color: var(--White);
-                    width: 250px;
+                    width: 300px;
                     height: fit-content;
                     display: none;
                     flex-direction: column;
@@ -132,6 +137,9 @@ html {
                     -moz-box-shadow: -7px 26px 50px -10px rgba(0, 0, 0, 0.75);
                     box-shadow: -7px 26px 50px -10px rgba(0, 0, 0, 0.75);
 
+                    &.active {
+                        display: flex;
+                    }
 
 
                     .dropdown-header {
@@ -146,16 +154,104 @@ html {
 
                     .dropdown-main {
                         width: 100%;
-                        height: 200px;
+                        max-width: 300px;
                         display: flex;
-                        justify-content: center;
+                        flex-direction: column;
+                        justify-content: space-between;
                         align-items: center;
+                        padding: 10px;
+                        position: relative;
 
-                        p {
+                        .empty-message {
+                            position: absolute;
+                            top: 50%;
+                            left: 50%;
+                            transform: translate(-50%, -50%);
+                            width: 100%;
+                            height: 100%;
+                            display: none;
+                            justify-content: center;
+                            align-items: center;
                             font-size: 16px;
                             color: var(--Dark-grayish-blue);
+
+                            &.active {
+                                display: flex;
+                            }
                         }
 
+                        .cart-products {
+                            width: 100%;
+                            height: 250px;
+                            display: flex;
+                            flex-direction: column;
+                            justify-content: flex-start;
+                            align-items: flex-start;
+
+                            .product {
+                                width: 100%;
+                                height: 70px;
+                                display: flex;
+                                justify-content: flex-start;
+                                align-items: center;
+                                gap: 5px;
+
+                                &-image {
+                                    width: 50px;
+                                    height: 50px;
+
+                                    img {
+                                        width: 100%;
+                                        height: 100%;
+                                        inset: 0;
+                                        border-radius: 10px;
+                                    }
+                                }
+
+                                &-info {
+                                    flex: 1 1;
+                                    display: flex;
+                                    flex-direction: column;
+                                    justify-content: space-around;
+                                    align-items: flex-start;
+                                    gap: 7px;
+
+                                    .product-price {
+                                        display: flex;
+                                        justify-content: space-between;
+                                        align-items: center;
+                                        gap: 15px;
+
+                                        span {
+                                            font-size: 18px;
+                                            font-weight: bold;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+
+                        .checkout-button {
+                            width: 100%;
+                            height: 40px;
+                            display: none;
+
+                            &.active {
+                                display: block;
+                            }
+
+                            button {
+                                width: 100%;
+                                height: 100%;
+                                background-color: var(--Orange);
+                                color: var(--White);
+                                border: none;
+                                outline: none;
+                                cursor: pointer;
+                                border-radius: 10px;
+                                font-size: 13px;
+                            }
+                        }
                     }
                 }
 
@@ -209,6 +305,7 @@ html {
                     width: 100%;
                     height: 100%;
                     border-radius: 10px;
+                    cursor: pointer;
 
                     img {
                         width: 100%;
@@ -425,6 +522,10 @@ html {
     justify-content: center;
     align-items: center;
 
+    &.active {
+        display: flex;
+    }
+
     .modal {
         width: 600px;
         display: flex;
@@ -438,6 +539,7 @@ html {
             display: flex;
             justify-content: flex-end;
             align-items: center;
+            cursor: pointer;
 
             img {
                 width: 20px;
@@ -451,13 +553,21 @@ html {
             height: 100%;
             position: relative;
 
-            img {
+            .modal-galeri {
                 width: 100%;
                 height: 100%;
-                inset: 0;
-                border-radius: 10px;
-                object-fit: contain;
+
+                img {
+                    display: none;
+                    width: 100%;
+                    height: 100%;
+                    inset: 0;
+                    border-radius: 10px;
+                    object-fit: contain;
+                }
             }
+
+
 
             .prev-button {
                 width: 50px;
@@ -472,6 +582,7 @@ html {
                 display: flex;
                 justify-content: center;
                 align-items: center;
+                cursor: pointer;
 
                 img {
                     width: 100%;
@@ -492,6 +603,7 @@ html {
                 display: flex;
                 justify-content: center;
                 align-items: center;
+                cursor: pointer;
 
                 img {
                     width: 100%;
@@ -505,16 +617,15 @@ html {
             display: flex;
             justify-content: space-between;
 
-            .picture {
+            .js-picture {
                 width: 20%;
                 cursor: pointer;
                 border-radius: 15px;
+
                 &.active {
                     border: 3px solid var(--Orange);
 
                     &.active img {
-                        background-color: white;
-                        color: white;
                         opacity: 0.4;
                     }
                 }

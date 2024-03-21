@@ -89,6 +89,7 @@ html {
   border-bottom: 1px solid var(--Grayish-blue);
 }
 .container header .logo-wrapper {
+  height: 120px;
   display: flex;
   justify-content: flex-start;
   align-items: center;
@@ -120,6 +121,10 @@ html {
   align-items: center;
   border-bottom: 3px solid transparent;
   color: var(--Dark-grayish-blue);
+}
+.container header nav .navbar ul li.active {
+  border-color: var(--Orange);
+  color: var(--Very-dark-blue);
 }
 .container header nav .navbar ul li:hover {
   border-color: var(--Orange);
@@ -156,7 +161,7 @@ html {
 }
 .container header .user-actions .basket .basket-dropdown {
   background-color: var(--White);
-  width: 250px;
+  width: 300px;
   height: -moz-fit-content;
   height: fit-content;
   display: none;
@@ -169,6 +174,9 @@ html {
   border-radius: 10px;
   box-shadow: -7px 26px 50px -10px rgba(0, 0, 0, 0.75);
 }
+.container header .user-actions .basket .basket-dropdown.active {
+  display: flex;
+}
 .container header .user-actions .basket .basket-dropdown .dropdown-header {
   width: 100%;
   padding: 20px;
@@ -179,14 +187,92 @@ html {
 }
 .container header .user-actions .basket .basket-dropdown .dropdown-main {
   width: 100%;
-  height: 200px;
+  max-width: 300px;
   display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  position: relative;
+}
+.container header .user-actions .basket .basket-dropdown .dropdown-main .empty-message {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 100%;
+  display: none;
   justify-content: center;
   align-items: center;
-}
-.container header .user-actions .basket .basket-dropdown .dropdown-main p {
   font-size: 16px;
   color: var(--Dark-grayish-blue);
+}
+.container header .user-actions .basket .basket-dropdown .dropdown-main .empty-message.active {
+  display: flex;
+}
+.container header .user-actions .basket .basket-dropdown .dropdown-main .cart-products {
+  width: 100%;
+  height: 250px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+.container header .user-actions .basket .basket-dropdown .dropdown-main .cart-products .product {
+  width: 100%;
+  height: 70px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 5px;
+}
+.container header .user-actions .basket .basket-dropdown .dropdown-main .cart-products .product-image {
+  width: 50px;
+  height: 50px;
+}
+.container header .user-actions .basket .basket-dropdown .dropdown-main .cart-products .product-image img {
+  width: 100%;
+  height: 100%;
+  inset: 0;
+  border-radius: 10px;
+}
+.container header .user-actions .basket .basket-dropdown .dropdown-main .cart-products .product-info {
+  flex: 1 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: flex-start;
+  gap: 7px;
+}
+.container header .user-actions .basket .basket-dropdown .dropdown-main .cart-products .product-info .product-price {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+}
+.container header .user-actions .basket .basket-dropdown .dropdown-main .cart-products .product-info .product-price span {
+  font-size: 18px;
+  font-weight: bold;
+}
+.container header .user-actions .basket .basket-dropdown .dropdown-main .checkout-button {
+  width: 100%;
+  height: 40px;
+  display: none;
+}
+.container header .user-actions .basket .basket-dropdown .dropdown-main .checkout-button.active {
+  display: block;
+}
+.container header .user-actions .basket .basket-dropdown .dropdown-main .checkout-button button {
+  width: 100%;
+  height: 100%;
+  background-color: var(--Orange);
+  color: var(--White);
+  border: none;
+  outline: none;
+  cursor: pointer;
+  border-radius: 10px;
+  font-size: 13px;
 }
 .container header .user-actions .user-profile {
   width: 45px;
@@ -231,6 +317,7 @@ html {
   width: 100%;
   height: 100%;
   border-radius: 10px;
+  cursor: pointer;
 }
 .container main .banner-section .image-wrapper .banner-image img {
   width: 100%;
@@ -411,6 +498,9 @@ html {
   justify-content: center;
   align-items: center;
 }
+.modal-container.active {
+  display: flex;
+}
 .modal-container .modal {
   width: 600px;
   display: flex;
@@ -424,6 +514,7 @@ html {
   display: flex;
   justify-content: flex-end;
   align-items: center;
+  cursor: pointer;
 }
 .modal-container .modal .close-modal-wrapper img {
   width: 20px;
@@ -435,7 +526,12 @@ html {
   height: 100%;
   position: relative;
 }
-.modal-container .modal .modal-image img {
+.modal-container .modal .modal-image .modal-galeri {
+  width: 100%;
+  height: 100%;
+}
+.modal-container .modal .modal-image .modal-galeri img {
+  display: none;
   width: 100%;
   height: 100%;
   inset: 0;
@@ -456,6 +552,7 @@ html {
   display: flex;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
 }
 .modal-container .modal .modal-image .prev-button img {
   width: 100%;
@@ -474,6 +571,7 @@ html {
   display: flex;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
 }
 .modal-container .modal .modal-image .next-button img {
   width: 100%;
@@ -484,23 +582,21 @@ html {
   display: flex;
   justify-content: space-between;
 }
-.modal-container .modal .other-modal-pictures .picture {
+.modal-container .modal .other-modal-pictures .js-picture {
   width: 20%;
   cursor: pointer;
   border-radius: 15px;
 }
-.modal-container .modal .other-modal-pictures .picture.active {
+.modal-container .modal .other-modal-pictures .js-picture.active {
   border: 3px solid var(--Orange);
 }
-.modal-container .modal .other-modal-pictures .picture.active.active img {
-  background-color: white;
-  color: white;
+.modal-container .modal .other-modal-pictures .js-picture.active.active img {
   opacity: 0.4;
 }
-.modal-container .modal .other-modal-pictures .picture:hover {
+.modal-container .modal .other-modal-pictures .js-picture:hover {
   opacity: 0.5;
 }
-.modal-container .modal .other-modal-pictures .picture img {
+.modal-container .modal .other-modal-pictures .js-picture img {
   width: 100%;
   height: 100%;
   border-radius: 10px;

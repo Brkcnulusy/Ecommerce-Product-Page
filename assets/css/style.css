@@ -78,6 +78,7 @@ html {
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
+  position: relative;
 }
 .container header {
   width: 80%;
@@ -88,15 +89,67 @@ html {
   align-items: center;
   border-bottom: 1px solid var(--Grayish-blue);
 }
+@media (max-width: 500px) {
+  .container header {
+    width: 100%;
+  }
+}
 .container header .logo-wrapper {
   height: 120px;
   display: flex;
   justify-content: flex-start;
   align-items: center;
+  gap: 20px;
+}
+.container header .logo-wrapper .hamburger-menu {
+  display: none;
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+}
+@media (max-width: 1060px) {
+  .container header .logo-wrapper .hamburger-menu {
+    display: block;
+  }
+}
+.container header .logo-wrapper .hamburger-menu img {
+  width: 100%;
+  height: 100%;
+  inset: 0;
 }
 .container header nav {
   flex: 1 1;
   height: 100%;
+  position: relative;
+}
+@media (max-width: 1060px) {
+  .container header nav {
+    display: none;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    background-color: rgba(0, 0, 0, 0.5647058824);
+    z-index: 9;
+  }
+  .container header nav.active {
+    display: flex;
+  }
+}
+.container header nav .close-menu {
+  display: none;
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  top: 20px;
+  left: 20px;
+}
+@media (max-width: 1060px) {
+  .container header nav .close-menu {
+    display: block;
+    z-index: 9;
+  }
 }
 .container header nav .navbar {
   width: 100%;
@@ -106,12 +159,33 @@ html {
   padding-left: 50px;
   align-items: center;
 }
+@media (max-width: 1060px) {
+  .container header nav .navbar {
+    width: 75%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    background-color: var(--White);
+    padding: 80px 20px;
+  }
+}
 .container header nav .navbar ul {
   height: 100%;
   display: flex;
   justify-content: flex-start;
   align-items: center;
   gap: 50px;
+}
+@media (max-width: 1060px) {
+  .container header nav .navbar ul {
+    width: 100%;
+    height: 100%;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 20px;
+  }
 }
 .container header nav .navbar ul li {
   cursor: pointer;
@@ -122,16 +196,42 @@ html {
   border-bottom: 3px solid transparent;
   color: var(--Dark-grayish-blue);
 }
+@media (max-width: 1060px) {
+  .container header nav .navbar ul li {
+    width: -moz-fit-content;
+    width: fit-content;
+    height: -moz-fit-content;
+    height: fit-content;
+  }
+}
 .container header nav .navbar ul li.active {
   border-color: var(--Orange);
   color: var(--Very-dark-blue);
+}
+@media (max-width: 1060px) {
+  .container header nav .navbar ul li.active {
+    border-color: transparent;
+    color: #000000;
+  }
 }
 .container header nav .navbar ul li:hover {
   border-color: var(--Orange);
   color: var(--Very-dark-blue);
 }
+@media (max-width: 1060px) {
+  .container header nav .navbar ul li:hover {
+    border-color: transparent;
+    color: #000000;
+  }
+}
 .container header nav .navbar ul li span {
   font-size: 16px;
+}
+@media (max-width: 1060px) {
+  .container header nav .navbar ul li span {
+    font-weight: bolder;
+    color: #000000;
+  }
 }
 .container header .user-actions {
   width: -moz-fit-content;
@@ -155,6 +255,7 @@ html {
 .container header .user-actions .basket .basket-image {
   width: 25px;
   height: 25px;
+  background-color: var(--White);
 }
 .container header .user-actions .basket .basket-image:hover ~ .basket-dropdown {
   display: flex;
@@ -295,6 +396,19 @@ html {
   justify-content: center;
   align-items: center;
 }
+@media (max-width: 1060px) {
+  .container main {
+    height: 100%;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+  }
+}
+@media (max-width: 500px) {
+  .container main {
+    width: 100%;
+  }
+}
 .container main .banner-section {
   width: 50%;
   height: -moz-fit-content;
@@ -303,6 +417,27 @@ html {
   justify-content: center;
   align-items: center;
   padding: 100px 50px;
+}
+@media (max-width: 1260px) {
+  .container main .banner-section {
+    padding: 100px 0;
+  }
+}
+@media (max-width: 1060px) {
+  .container main .banner-section {
+    width: 400px;
+    height: -moz-fit-content;
+    height: fit-content;
+    padding: 50px 0;
+  }
+}
+@media (max-width: 500px) {
+  .container main .banner-section {
+    width: 100%;
+    height: -moz-fit-content;
+    height: fit-content;
+    padding: 0;
+  }
 }
 .container main .banner-section .image-wrapper {
   width: 450px;
@@ -313,11 +448,71 @@ html {
   align-items: center;
   gap: 30px;
 }
+@media (max-width: 1260px) {
+  .container main .banner-section .image-wrapper {
+    width: 100%;
+  }
+}
+.container main .banner-section .image-wrapper .banner-galeri {
+  width: 100%;
+  height: 100%;
+}
+.container main .banner-section .image-wrapper .banner-galeri img {
+  display: none;
+  width: 100%;
+  height: 100%;
+  inset: 0;
+  border-radius: 10px;
+  -o-object-fit: contain;
+     object-fit: contain;
+}
 .container main .banner-section .image-wrapper .banner-image {
   width: 100%;
   height: 100%;
-  border-radius: 10px;
   cursor: pointer;
+  position: relative;
+}
+.container main .banner-section .image-wrapper .banner-image .banner-next-button {
+  z-index: 15;
+  width: 40px;
+  height: 40px;
+  padding: 12px;
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  background-color: var(--White);
+  border-radius: 50%;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+@media (max-width: 500px) {
+  .container main .banner-section .image-wrapper .banner-image .banner-next-button {
+    display: flex;
+  }
+}
+.container main .banner-section .image-wrapper .banner-image .banner-prev-button {
+  z-index: 15;
+  width: 40px;
+  height: 40px;
+  padding: 12px;
+  position: absolute;
+  top: 50%;
+  left: 10px;
+  transform: translateY(-50%);
+  background-color: var(--White);
+  border-radius: 50%;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+@media (max-width: 500px) {
+  .container main .banner-section .image-wrapper .banner-image .banner-prev-button {
+    display: flex;
+  }
 }
 .container main .banner-section .image-wrapper .banner-image img {
   width: 100%;
@@ -327,6 +522,11 @@ html {
      object-fit: contain;
   border-radius: 10px;
 }
+@media (max-width: 500px) {
+  .container main .banner-section .image-wrapper .banner-image img {
+    border-radius: 0;
+  }
+}
 .container main .banner-section .image-wrapper .other-pictures {
   width: 100%;
   height: -moz-fit-content;
@@ -334,6 +534,11 @@ html {
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+@media (max-width: 500px) {
+  .container main .banner-section .image-wrapper .other-pictures {
+    display: none;
+  }
 }
 .container main .banner-section .image-wrapper .other-pictures .picture {
   width: 80px;
@@ -365,6 +570,22 @@ html {
   align-items: center;
   padding: 100px 50px;
 }
+@media (max-width: 1060px) {
+  .container main .content-section {
+    width: 400px;
+    height: -moz-fit-content;
+    height: fit-content;
+    padding: 20px 0;
+  }
+}
+@media (max-width: 500px) {
+  .container main .content-section {
+    width: 100%;
+    height: -moz-fit-content;
+    height: fit-content;
+    padding: 10px;
+  }
+}
 .container main .content-section .product {
   width: 100%;
   height: 100%;
@@ -374,6 +595,11 @@ html {
   align-items: center;
   padding-right: 180px;
   gap: 30px;
+}
+@media (max-width: 1700px) {
+  .container main .content-section .product {
+    padding-right: 0;
+  }
 }
 .container main .content-section .product-company {
   width: 100%;
@@ -391,6 +617,11 @@ html {
   font-size: 50px;
   font-weight: bolder;
 }
+@media (max-width: 500px) {
+  .container main .content-section .product-title h2 {
+    font-size: 36px;
+  }
+}
 .container main .content-section .product-description {
   width: 100%;
 }
@@ -404,6 +635,11 @@ html {
   flex-wrap: wrap;
   align-items: center;
   gap: 20px;
+}
+@media (max-width: 500px) {
+  .container main .content-section .product-price-wrapper {
+    flex-wrap: nowrap;
+  }
 }
 .container main .content-section .product-price-wrapper .price span {
   font-size: 28px;
@@ -420,6 +656,9 @@ html {
 }
 .container main .content-section .product-price-wrapper .previous-price {
   width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
 }
 .container main .content-section .product-price-wrapper .previous-price p {
   color: var(--Grayish-blue);
@@ -431,6 +670,11 @@ html {
   display: flex;
   gap: 15px;
 }
+@media (max-width: 500px) {
+  .container main .content-section .product-actions {
+    flex-direction: column;
+  }
+}
 .container main .content-section .product-actions .product-quantity {
   width: 30%;
   height: 50px;
@@ -439,6 +683,11 @@ html {
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+@media (max-width: 500px) {
+  .container main .content-section .product-actions .product-quantity {
+    width: 100%;
+  }
 }
 .container main .content-section .product-actions .product-quantity .minus {
   width: 30%;
@@ -467,6 +716,11 @@ html {
 .container main .content-section .product-actions .add-to-cart {
   width: 60%;
   height: 50px;
+}
+@media (max-width: 500px) {
+  .container main .content-section .product-actions .add-to-cart {
+    width: 100%;
+  }
 }
 .container main .content-section .product-actions .add-to-cart button {
   width: 100%;
@@ -501,6 +755,11 @@ html {
 .modal-container.active {
   display: flex;
 }
+@media (max-width: 500px) {
+  .modal-container.active {
+    display: none;
+  }
+}
 .modal-container .modal {
   width: 600px;
   display: flex;
@@ -508,6 +767,17 @@ html {
   justify-content: center;
   align-items: center;
   gap: 20px;
+}
+@media (max-width: 700px) {
+  .modal-container .modal {
+    width: 100%;
+    padding: 10px;
+  }
+}
+@media (max-width: 500px) {
+  .modal-container .modal {
+    display: none;
+  }
 }
 .modal-container .modal .close-modal-wrapper {
   width: 100%;
@@ -554,6 +824,11 @@ html {
   align-items: center;
   cursor: pointer;
 }
+@media (max-width: 700px) {
+  .modal-container .modal .modal-image .prev-button {
+    left: 25px;
+  }
+}
 .modal-container .modal .modal-image .prev-button img {
   width: 100%;
   height: 100%;
@@ -572,6 +847,11 @@ html {
   justify-content: center;
   align-items: center;
   cursor: pointer;
+}
+@media (max-width: 700px) {
+  .modal-container .modal .modal-image .next-button {
+    right: 25px;
+  }
 }
 .modal-container .modal .modal-image .next-button img {
   width: 100%;

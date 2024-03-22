@@ -1,10 +1,12 @@
+import { _addClass, _addProductToCart, _removeClass } from "./ui.js";
+
 const ecommerce = (function () {
   // Variables
 
   const cart = document.querySelector(".js-cart");
   const cartDropdown = document.querySelector(".js-cart-dropdown");
   const openModalButton = document.querySelector(".js-banner-button");
-  const bannerImage = document.querySelector(".js-banner-image");
+  const bannerImages = document.querySelectorAll(".js-banner-galeri img");
   const bannerPictures = document.querySelectorAll(".js-banner-picture");
   const bannerOtherPictures = document.querySelectorAll(".js-banner-other-picture");
   const quantityMinus = document.querySelector(".js-minus");
@@ -20,8 +22,11 @@ const ecommerce = (function () {
   const checkoutButton = document.querySelector(".js-checkout-button");
   const cartProducts = document.querySelector(".js-cart-products");
   const emptyCartMessage = document.querySelector(".js-cart-empty");
-  const slideImages = document.querySelectorAll('.js-modal-galeri img')
+  const slideImages = document.querySelectorAll('.js-modal-galeri img');
+  const bannerNextButton = document.querySelector('.js-banner-next');
+  const bannerPrevButton = document.querySelector('.js-banner-prev');
   let currentIndex = 0;
+  const extising = cartProducts.children.length;
 
   // Event Listeners
 
@@ -54,46 +59,34 @@ const ecommerce = (function () {
         _toggleClass(modalPictures, target);
       })
     })
-    nextSlide.addEventListener('click', _nextImage);
-    prevSlide.addEventListener('click', _previousImage);
+    nextSlide.addEventListener('click',() => _nextImage(slideImages));
+    prevSlide.addEventListener('click',() => _previousImage(slideImages));
+    bannerNextButton.addEventListener('click',() => _nextImage(bannerImages));
+    bannerPrevButton.addEventListener('click',() => _previousImage(bannerImages));
   };
   // FunC
 
   const _deleteProduct = function (target) {
     if (target.closest(".js-delete-product")) {
       target.parentElement.remove();
-      if(cartProducts.children.length == 0) {
-        emptyCartMessage.classList.add('active');
-        checkoutButton.classList.remove('active');
+      if(extising == 0) {
+        _addClass(emptyCartMessage);
+        _removeClass(checkoutButton);
       }
     }
   };
 
   const _addToCart = function () {
-    const quantity = Number(quantityScreen.innerHTML);
-    const price = 125.0 * quantity;
+    const productData = {
+      quantity: Number(quantityScreen.innerHTML),
+      price: 125.00 * Number(quantityScreen.innerHTML),
+    }
 
-    checkoutButton.classList.add("active");
-    emptyCartMessage.classList.remove("active");
+    _addClass(checkoutButton);
+    _removeClass(emptyCartMessage);
 
-    if (cartProducts.children.length < 4) {
-      cartProducts.innerHTML += `
-      <div class="product">
-        <div class="product-image">
-          <img src="./assets/images/image-product-1-thumbnail.jpg" alt="product">
-        </div>
-        <div class="product-info">
-          <div class="product-name">
-            <h3>Fall Limited Edition Sneakers</h3>
-          </div>
-          <div class="product-price">
-            <p>$125.00 x ${quantity}</p>
-            <span>$${price}</span>
-          </div>
-        </div>
-        <img class="js-delete-product" src="./assets/images/icon-delete.svg" alt="delete">
-      </div>
-      `;
+    if (extising < 4) {
+      _addProductToCart(cartProducts, productData);
     }
   };
 
@@ -121,6 +114,7 @@ const ecommerce = (function () {
 
   const _toggleClass = function (elements, target) {
     elements.forEach((element) => {
+      _removeClass(element);
       element.classList.remove("active");
     });
     target.parentElement.classList.add("active");
@@ -128,68 +122,68 @@ const ecommerce = (function () {
 
   const _changeModalImage = function (e) {
     currentIndex = Number(e.target.alt);
-    _showImage(currentIndex);
+    _showImage(currentIndex, slideImages);
   }
 
   const _changeBannerImage = function (e) {
-    const bannerImageSrc = e.target.src;
-    const newBannerImgSrc = bannerImageSrc.replace("-thumbnail", "");
-    bannerImage.src = newBannerImgSrc;
+    currentIndex = Number(e.target.alt);
+    _showImage(currentIndex, bannerImages);
   };
 
-  const _nextImage = function () {
-    currentIndex = (currentIndex + 1) % slideImages.length;
-    _showImage(currentIndex);
+  const _nextImage = function (element) {
+    currentIndex = (currentIndex + 1) % element.length;
+    _showImage(currentIndex, element);
     modalPictures.forEach(picture => {
-      picture.classList.remove('active');
+      _removeClass(picture);
     });
     modalPictures[currentIndex].classList.add('active');
   }
-  const _previousImage = function () {
-    currentIndex = (currentIndex - 1) % slideImages.length;
+  const _previousImage = function (element) {
+    currentIndex = (currentIndex - 1) % element.length;
     modalPictures.forEach(picture => {
-      picture.classList.remove('active');
+      _removeClass(picture);
     });
     if(currentIndex < 0) {
-      currentIndex = slideImages.length -1;
-      _showImage(currentIndex);
+      currentIndex = element.length -1;
+      _showImage(currentIndex, element);
       modalPictures[currentIndex].classList.add('active');
   } else {
-      _showImage(currentIndex);
+      _showImage(currentIndex, element);
       modalPictures[currentIndex].classList.add('active');
   }
   }
-  const _showImage = function (Index) {
-    slideImages.forEach(image => {
-      image.style.display = 'none';
+  const _showImage = function (Index, elements) {
+    elements.forEach(element => {
+      element.style.display = 'none';
     });
-    slideImages[Index].style.display = 'block';
+    elements[Index].style.display = 'block';
   }
 
   const _closeModal = function () {
-    modal.classList.remove("active");
+    _removeClass(modal);
   };
 
   const _openModal = function () {
     if (modal.classList.contains("active")) {
-      modal.classList.remove("active");
+      _removeClass(modal);
     } else {
-      modal.classList.add("active");
+      _addClass(modal);
     }
   };
 
   const _openDropdown = function () {
     if (cartDropdown.classList.contains("active")) {
-      cartDropdown.classList.remove("active");
+      _removeClass(cartDropdown);
     } else {
-      cartDropdown.classList.add("active");
+      _addClass(cartDropdown);
     }
   };
 
   return {
     init: function () {
       _eventListeners();
-      _showImage(currentIndex);
+      _showImage(currentIndex, bannerImages);
+      _showImage(currentIndex, slideImages);
     },
   };
 })();

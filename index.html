@@ -26,9 +26,17 @@
     <div class="container">
       <header>
         <div class="logo-wrapper">
-          <img src="./assets/images/logo.svg" alt="logo" />
+          <div class="hamburger-menu">
+            <img src="./assets/images/icon-menu.svg" alt="menu">
+          </div>
+          <div class="logo">
+            <img src="./assets/images/logo.svg" alt="logo" />
+          </div>
         </div>
         <nav>
+          <div class="close-menu">
+            <img src="./assets/images/icon-black-close.svg" alt="close">
+          </div>
           <div class="navbar">
             <ul>
               <li>
@@ -78,35 +86,42 @@
         <section class="banner-section">
           <div class="image-wrapper">
             <div class="banner-image js-banner-button">
-              <img
-                class="js-banner-image"
-                src="./assets/images/image-product-1.jpg"
-                alt="banner"
-              />
+              <div class="banner-next-button js-banner-next">
+                <img src="./assets/images/icon-next.svg" alt="next">
+              </div>
+              <div class="banner-prev-button js-banner-prev">
+                <img src="./assets/images/icon-previous.svg" alt="prev">
+              </div>
+              <div class="banner-galeri js-banner-galeri">
+                <img class="js-banner-image" src="./assets/images/image-product-1.jpg" alt="1" />
+                <img class="js-banner-image" src="./assets/images/image-product-2.jpg" alt="2" />
+                <img class="js-banner-image" src="./assets/images/image-product-3.jpg" alt="3" />
+                <img class="js-banner-image" src="./assets/images/image-product-4.jpg" alt="4" />
+              </div>
             </div>
             <div class="other-pictures">
               <div class="picture active js-banner-picture">
                 <img class="js-banner-other-picture"
                   src="./assets/images/image-product-1-thumbnail.jpg"
-                  alt="picture1"
+                  alt="0"
                 />
               </div>
               <div class="picture js-banner-picture">
                 <img class="js-banner-other-picture"
                   src="./assets/images/image-product-2-thumbnail.jpg"
-                  alt="picture2"
+                  alt="1"
                 />
               </div>
               <div class="picture js-banner-picture">
                 <img class="js-banner-other-picture"
                   src="./assets/images/image-product-3-thumbnail.jpg"
-                  alt="picture3"
+                  alt="2"
                 />
               </div>
               <div class="picture js-banner-picture">
                 <img class="js-banner-other-picture"
                   src="./assets/images/image-product-4-thumbnail.jpg"
-                  alt="picture4"
+                  alt="3"
                 />
               </div>
             </div>
@@ -170,7 +185,7 @@
     <div class="modal-container js-modal">
       <div class="modal">
         <div class="close-modal-wrapper">
-          <img class="js-close-modal" src="./assets/images/icon-close.svg" alt="close" />
+          <img class="js-close-modal" src="./assets/images/icon-white-close.svg" alt="close" />
         </div>
         <div class="modal-image">
           <div class="modal-galeri js-modal-galeri">

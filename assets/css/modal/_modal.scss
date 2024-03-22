@@ -1,0 +1,149 @@
+.modal-container {
+    z-index: 9;
+    width: 100%;
+    height: 960px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: #00000090;
+    display: none;
+    justify-content: center;
+    align-items: center;
+
+    &.active {
+        display: flex;
+        @media (max-width: 500px) {
+            display: none;
+        }
+    }
+
+    .modal {
+        width: 600px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 20px;
+        @media (max-width: 700px) {
+            width: 100%;
+            padding: 10px;
+        }
+        @media (max-width: 500px) {
+            display: none;
+        }
+
+        .close-modal-wrapper {
+            width: 100%;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            cursor: pointer;
+
+            img {
+                width: 20px;
+                height: 20px;
+                inset: 0;
+            }
+        }
+
+        .modal-image {
+            width: 100%;
+            height: 100%;
+            position: relative;
+
+            .modal-galeri {
+                width: 100%;
+                height: 100%;
+
+                img {
+                    display: none;
+                    width: 100%;
+                    height: 100%;
+                    inset: 0;
+                    border-radius: 10px;
+                    object-fit: contain;
+                }
+            }
+
+
+
+            .prev-button {
+                width: 50px;
+                height: 50px;
+                padding: 15px;
+                background-color: var(--White);
+                border-radius: 50%;
+                position: absolute;
+                left: -25px;
+                top: 50%;
+                transform: translateY(-50%);
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                cursor: pointer;
+                @media (max-width: 700px) {
+                    left: 25px;
+                }
+
+                img {
+                    width: 100%;
+                    height: 100%;
+                }
+            }
+
+            .next-button {
+                width: 50px;
+                height: 50px;
+                padding: 15px;
+                background-color: var(--White);
+                border-radius: 50%;
+                position: absolute;
+                right: -25px;
+                top: 50%;
+                transform: translateY(-50%);
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                cursor: pointer;
+                @media (max-width: 700px) {
+                    right: 25px;
+                }
+
+                img {
+                    width: 100%;
+                    height: 100%;
+                }
+            }
+        }
+
+        .other-modal-pictures {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+
+            .js-picture {
+                width: 20%;
+                cursor: pointer;
+                border-radius: 15px;
+
+                &.active {
+                    border: 3px solid var(--Orange);
+
+                    &.active img {
+                        opacity: 0.4;
+                    }
+                }
+
+                &:hover {
+                    opacity: 0.5;
+                }
+
+                img {
+                    width: 100%;
+                    height: 100%;
+                    border-radius: 10px;
+                }
+            }
+        }
+    }
+}

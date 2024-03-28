@@ -47,7 +47,7 @@ header {
       left: 0;
       top: 0;
       background-color: #00000090;
-      z-index: 9;
+      z-index: 500;
 
       &.active {
         display: flex;
@@ -172,6 +172,7 @@ header {
       }
 
       .basket-dropdown {
+        z-index: 20;
         background-color: var(--White);
         width: 300px;
         height: fit-content;

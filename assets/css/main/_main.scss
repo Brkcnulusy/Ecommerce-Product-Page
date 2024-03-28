@@ -254,8 +254,11 @@ main {
                 .previous-price {
                     width: 100%;
                     display: flex;
-                    justify-content: flex-end;
+                    justify-content: flex-start;
                     align-items: center;
+                    @media (max-width: 500px) {
+                        justify-content: flex-end;
+                    }
 
                     p {
                         color: var(--Grayish-blue);

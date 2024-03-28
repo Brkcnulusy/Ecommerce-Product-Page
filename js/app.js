@@ -8,7 +8,9 @@ const ecommerce = (function () {
   const openModalButton = document.querySelector(".js-banner-button");
   const bannerImages = document.querySelectorAll(".js-banner-galeri img");
   const bannerPictures = document.querySelectorAll(".js-banner-picture");
-  const bannerOtherPictures = document.querySelectorAll(".js-banner-other-picture");
+  const bannerOtherPictures = document.querySelectorAll(
+    ".js-banner-other-picture"
+  );
   const quantityMinus = document.querySelector(".js-minus");
   const quantityPlus = document.querySelector(".js-plus");
   const quantityScreen = document.querySelector(".js-quantity-screen");
@@ -22,11 +24,13 @@ const ecommerce = (function () {
   const checkoutButton = document.querySelector(".js-checkout-button");
   const cartProducts = document.querySelector(".js-cart-products");
   const emptyCartMessage = document.querySelector(".js-cart-empty");
-  const slideImages = document.querySelectorAll('.js-modal-galeri img');
-  const bannerNextButton = document.querySelector('.js-banner-next');
-  const bannerPrevButton = document.querySelector('.js-banner-prev');
+  const slideImages = document.querySelectorAll(".js-modal-galeri img");
+  const bannerNextButton = document.querySelector(".js-banner-next");
+  const bannerPrevButton = document.querySelector(".js-banner-prev");
+  const hamburgerIcon = document.querySelector(".js-hamburger");
+  const hamburgerMenu = document.querySelector(".js-menu");
+  const closeMenuButton = document.querySelector(".js-close-menu");
   let currentIndex = 0;
-  const extising = cartProducts.children.length;
 
   // Event Listeners
 
@@ -49,27 +53,52 @@ const ecommerce = (function () {
     document.addEventListener("click", function (e) {
       const target = e.target;
       _deleteProduct(target);
+      _closeDropdown(target);
     });
-    modalOtherPictures.forEach(modalOtherPitcure => {
-      modalOtherPitcure.addEventListener('click', _changeModalImage);
-    })
-    modalPictures.forEach(picture => {
-      picture.addEventListener('click', (e) => {
+    modalOtherPictures.forEach((modalOtherPitcure) => {
+      modalOtherPitcure.addEventListener("click", _changeModalImage);
+    });
+    modalPictures.forEach((picture) => {
+      picture.addEventListener("click", (e) => {
         const target = e.target;
         _toggleClass(modalPictures, target);
-      })
-    })
-    nextSlide.addEventListener('click',() => _nextImage(slideImages));
-    prevSlide.addEventListener('click',() => _previousImage(slideImages));
-    bannerNextButton.addEventListener('click',() => _nextImage(bannerImages));
-    bannerPrevButton.addEventListener('click',() => _previousImage(bannerImages));
+      });
+    });
+    nextSlide.addEventListener("click", () => _nextImage(slideImages));
+    prevSlide.addEventListener("click", () => _previousImage(slideImages));
+    bannerNextButton.addEventListener("click", () => _nextImage(bannerImages));
+    bannerPrevButton.addEventListener("click", () =>
+      _previousImage(bannerImages)
+    );
+    hamburgerIcon.addEventListener("click", _openMenu);
+    closeMenuButton.addEventListener("click", _closeMenu);
   };
   // FunC
+
+  const _closeDropdown = function (target) {
+    if (
+      target.closest(".js-cart-dropdown") ||
+      target.closest(".js-cart") ||
+      target.closest(".js-delete-product")
+    ) {
+      _addClass(cartDropdown);
+    } else {
+      _removeClass(cartDropdown);
+    }
+  };
+
+  const _openMenu = function () {
+    _addClass(hamburgerMenu);
+  };
+
+  const _closeMenu = function () {
+    _removeClass(hamburgerMenu);
+  };
 
   const _deleteProduct = function (target) {
     if (target.closest(".js-delete-product")) {
       target.parentElement.remove();
-      if(extising == 0) {
+      if (cartProducts.children.length == 0) {
         _addClass(emptyCartMessage);
         _removeClass(checkoutButton);
       }
@@ -79,13 +108,13 @@ const ecommerce = (function () {
   const _addToCart = function () {
     const productData = {
       quantity: Number(quantityScreen.innerHTML),
-      price: 125.00 * Number(quantityScreen.innerHTML),
-    }
+      price: 125.0 * Number(quantityScreen.innerHTML),
+    };
 
     _addClass(checkoutButton);
     _removeClass(emptyCartMessage);
 
-    if (extising < 4) {
+    if (cartProducts.children.length < 3) {
       _addProductToCart(cartProducts, productData);
     }
   };
@@ -123,7 +152,7 @@ const ecommerce = (function () {
   const _changeModalImage = function (e) {
     currentIndex = Number(e.target.alt);
     _showImage(currentIndex, slideImages);
-  }
+  };
 
   const _changeBannerImage = function (e) {
     currentIndex = Number(e.target.alt);
@@ -133,31 +162,31 @@ const ecommerce = (function () {
   const _nextImage = function (element) {
     currentIndex = (currentIndex + 1) % element.length;
     _showImage(currentIndex, element);
-    modalPictures.forEach(picture => {
+    modalPictures.forEach((picture) => {
       _removeClass(picture);
     });
-    modalPictures[currentIndex].classList.add('active');
-  }
+    modalPictures[currentIndex].classList.add("active");
+  };
   const _previousImage = function (element) {
     currentIndex = (currentIndex - 1) % element.length;
-    modalPictures.forEach(picture => {
+    modalPictures.forEach((picture) => {
       _removeClass(picture);
     });
-    if(currentIndex < 0) {
-      currentIndex = element.length -1;
+    if (currentIndex < 0) {
+      currentIndex = element.length - 1;
       _showImage(currentIndex, element);
-      modalPictures[currentIndex].classList.add('active');
-  } else {
+      modalPictures[currentIndex].classList.add("active");
+    } else {
       _showImage(currentIndex, element);
-      modalPictures[currentIndex].classList.add('active');
-  }
-  }
+      modalPictures[currentIndex].classList.add("active");
+    }
+  };
   const _showImage = function (Index, elements) {
-    elements.forEach(element => {
-      element.style.display = 'none';
+    elements.forEach((element) => {
+      element.style.display = "none";
     });
-    elements[Index].style.display = 'block';
-  }
+    elements[Index].style.display = "block";
+  };
 
   const _closeModal = function () {
     _removeClass(modal);

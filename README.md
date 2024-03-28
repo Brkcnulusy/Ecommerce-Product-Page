@@ -24,7 +24,7 @@ Kullanıcılar şunları yapabilmelidir:
 ### Genel Bakış
 - Javascript kodları ifee fonksiyonları içine yazılmıştır. Sonrada ekleme yada geliştirme yapacak kişiler dikkat etmelidir.
 - Responsive tasarımı mevcut olup farklı cihazlarda da görüntü bozulmamaktadır.
-- Css kodları scss şeklinde yazılmıştır. Ekleme yada geliştirme yapacak kişi style.scss dosyasını compile etelidir.
+- Css kodları scss şeklinde yazılmıştır. Ekleme yada geliştirme yapacak kişi style.scss dosyasını compile etmelidir.
 - Js ve CSS kodları modüler olarak yazılmıştır.
 
 
